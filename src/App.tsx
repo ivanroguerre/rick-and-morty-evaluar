@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ApiContext } from "./context/api";
 
 import CharacterCard from "./component/character-card";
-import { Container } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Searchbar from "./component/searchbar";
 
@@ -12,12 +12,20 @@ const App = () => {
     <Container
       maxW={["container.sm", "container.md", "container.md", "container.lg"]}
     >
-      <h1>RICK AND MORTY API</h1>
+      <Heading
+        fontWeight="black"
+        fontSize={["6xl", "8xl"]}
+        textAlign="center"
+        lineHeight={["60px", "105.7px"]}
+        mb={[5, 10]}
+      >
+        RICK AND MORTY API
+      </Heading>
       <Searchbar />
       {apiContext?.loading && <>...Loading</>}
       {apiContext?.error && <>{apiContext.error}</>}
       <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]}
+        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
         gap={6}
       >
         {apiContext?.characters?.map((character) => (
