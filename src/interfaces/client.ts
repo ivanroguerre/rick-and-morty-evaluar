@@ -10,3 +10,7 @@ export interface IClientConfig {
   path?: string;
   params?: { [key: string]: string };
 }
+
+export interface IRickAndMortyClientResponse<Result> {
+  results: Result[];
+}
