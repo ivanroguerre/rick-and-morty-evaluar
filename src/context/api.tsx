@@ -21,6 +21,7 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
           filters: { name: searchCriteria },
         });
         setCharacters(charactersResponse.results);
+        setError(undefined);
       } catch (error) {
         setError(error as string);
       } finally {
@@ -30,7 +31,9 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   }, [searchCriteria]);
 
   return (
-    <ApiContext.Provider value={{ characters, error, loading }}>
+    <ApiContext.Provider
+      value={{ characters, error, loading, searchCriteria, setSearchCriteria }}
+    >
       {children}
     </ApiContext.Provider>
   );
