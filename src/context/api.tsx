@@ -10,22 +10,28 @@ export const ApiContext = createContext<IApiContext | undefined>(undefined);
 export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   const [characters, setCharacters] = useState<ICharacter[]>();
   const [searchCriteria, setSearchCriteria] = useState("");
+  const [error, setError] = useState<string>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const charactersResponse = await getCharacters({
           filters: { name: searchCriteria },
         });
         setCharacters(charactersResponse.results);
-      } catch {
-        console.log();
+      } catch (error) {
+        setError(error as string);
+      } finally {
+        setLoading(false);
       }
     })();
   }, [searchCriteria]);
 
-  if (characters === undefined) return <>Loading...</>;
   return (
-    <ApiContext.Provider value={{ characters }}>{children}</ApiContext.Provider>
+    <ApiContext.Provider value={{ characters, error, loading }}>
+      {children}
+    </ApiContext.Provider>
   );
 };

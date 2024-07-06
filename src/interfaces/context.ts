@@ -1,5 +1,7 @@
-import { Character } from "./api";
+import { ICharacter } from "./api";
 
 export interface IApiContext {
-  characters: Character[];
+  characters: ICharacter[] | undefined;
+  error: string | undefined;
+  loading: boolean;
 }
