@@ -5,6 +5,8 @@ import { getCharacters } from "../service/rick-and-morty";
 import { IApiContext } from "../interfaces/context";
 import { ICharacter } from "../interfaces/api";
 
+import { debounce } from "../utils/misc";
+
 export const ApiContext = createContext<IApiContext | undefined>(undefined);
 
 export const ApiContextProvider = ({ children }: PropsWithChildren) => {
@@ -14,7 +16,7 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    debounce(async () => {
       try {
         setLoading(true);
         const charactersResponse = await getCharacters({
@@ -27,7 +29,7 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
       } finally {
         setLoading(false);
       }
-    })();
+    }, 1000);
   }, [searchCriteria]);
 
   return (
