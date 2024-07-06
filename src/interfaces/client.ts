@@ -7,6 +7,6 @@ export interface IClientConfig {
   // El método es opcional ya que de no pasarse se ejecuta una petición GET
   // y así el cliente se conforma con la mayoría de clientes HTTP existentes
   method?: "get";
-  url: string;
+  path?: string;
   params?: { [key: string]: string };
 }

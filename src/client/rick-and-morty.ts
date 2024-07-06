@@ -2,13 +2,18 @@ import { IClientConfig } from "../interfaces/client";
 
 import { buildQueryString } from "../utils/client";
 
+const RICK_AND_MORTY_URL = "https://rickandmortyapi.com/api";
+
 export const makeRequest = async (config: IClientConfig) => {
   const fetchMethod = config.method || "get";
-  let fetchURL = config.url;
+  const fetchPath = config.path || "";
   const fetchParams = config.params || {};
 
-  const queryString = buildQueryString(config.params);
-  if (queryString !== "") fetchURL = `${fetchURL}?${queryString}`;
+  let fetchURL = RICK_AND_MORTY_URL;
+  if (fetchPath !== "") fetchURL += `/${fetchPath}`;
+
+  const queryString = buildQueryString(fetchParams);
+  if (queryString !== "") fetchURL += `?${queryString}`;
 
   // Se puede agregar más configuración en el segundo parámetro del
   // constructor para el objeto `Request`. P. ej: header, body, etc.
