@@ -25,7 +25,11 @@ export const makeRequest = async <Result>(
   const fetchRequest = new Request(fetchURL, { method: fetchMethod });
 
   try {
-    return (await fetch(fetchRequest)).json();
+    const response = await fetch(fetchRequest);
+    // Por ahora no se tiene en cuenta el código de respuesta ya que
+    // igualmente no se ha centralizado el manejo de errores.
+    if (!response.ok) throw new Error();
+    return response.json();
   } catch {
     // Se puede centralizar acá la gestión de errores. Por ahora solo
     // se retorna una cadena de texto para cualquier error lanzado por
