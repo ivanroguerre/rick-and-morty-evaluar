@@ -9,9 +9,9 @@ import Searchbar from "./component/searchbar";
 const App = () => {
   const apiContext = useContext(ApiContext);
   return (
-    <Container
-      maxW={["container.sm", "container.md", "container.md", "container.lg"]}
-    >
+    // Se realizan estos cálculos en duro ya que el ancho de las card viene determinado
+    // por las imágenes que entrega la API (300x300)px
+    <Container maxW={["320px", "664px", "664px", "1352px"]}>
       <Heading
         fontWeight="black"
         fontSize={["6xl", "8xl"]}
@@ -25,7 +25,12 @@ const App = () => {
       {apiContext?.loading && <>...Loading</>}
       {apiContext?.error && <>{apiContext.error}</>}
       <Grid
-        templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}
+        templateColumns={[
+          "repeat(1, 1fr)",
+          "repeat(2, 1fr)",
+          "repeat(2, 1fr)",
+          "repeat(4, 1fr)",
+        ]}
         gap={6}
       >
         {apiContext?.characters?.map((character) => (
