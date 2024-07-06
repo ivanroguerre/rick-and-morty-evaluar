@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ApiContext } from "./context/api";
 
+import CharacterCard from "./component/character-card";
 import { Container } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Searchbar from "./component/searchbar";
@@ -21,7 +22,7 @@ const App = () => {
       >
         {apiContext?.characters?.map((character) => (
           <GridItem key={character.id}>
-            <h2>{character.name}</h2>
+            <CharacterCard character={character} />
           </GridItem>
         ))}
       </Grid>

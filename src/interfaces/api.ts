@@ -6,4 +6,5 @@ export interface ICharacter {
   location: {
     name: string;
   };
+  image: string;
 }
