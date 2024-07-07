@@ -14,6 +14,17 @@ const theme = extendTheme({
     heading: `'Passion One', system-ui`,
     body: `'Manrope Variable', sans-serif`,
   },
+  styles: {
+    global: {
+      body: {
+        minHeight: "100vh",
+        backgroundImage: `url("/bg.png")`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom right 0px",
+        backgroundSize: "100%",
+      },
+    },
+  },
 });
 
 export default theme;
