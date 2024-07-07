@@ -28,7 +28,13 @@ export const makeRequest = async <Result>(
     const response = await fetch(fetchRequest);
     // Por ahora no se tiene en cuenta el código de respuesta ya que
     // igualmente no se ha centralizado el manejo de errores.
-    if (!response.ok) throw new Error();
+    if (!response.ok) {
+      // La API no retorna arreglo vacío sino un error 404 cuando no
+      // hay personajes que coincidan con la búsqueda
+      if (response.status === 404)
+        return Promise.reject("No se encontraron resultados!");
+      throw new Error();
+    }
     return response.json();
   } catch {
     // Se puede centralizar acá la gestión de errores. Por ahora solo
