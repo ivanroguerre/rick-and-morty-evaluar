@@ -6,6 +6,9 @@ import { IClientConfig } from "../interfaces/client";
 export const buildQueryString = (params: IClientConfig["params"]) => {
   if (params === undefined) return "";
   return Object.entries(params)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => {
+      // Se cubre caso borde en donde el parámetro puede venir indefinido
+      if (value !== undefined) return `${key}=${value}`;
+    })
     .join("&");
 };

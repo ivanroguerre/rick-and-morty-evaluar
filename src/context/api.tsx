@@ -11,7 +11,7 @@ export const ApiContext = createContext<IApiContext | undefined>(undefined);
 
 export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   const [characters, setCharacters] = useState<ICharacter[]>();
-  const [searchCriteria, setSearchCriteria] = useState("");
+  const [searchCriteria, setSearchCriteria] = useState<string>();
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(false);
 
