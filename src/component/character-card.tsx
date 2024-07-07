@@ -2,7 +2,16 @@ import { Card, CardBody, Image, Text, VStack } from "@chakra-ui/react";
 
 import { ICharacterProps } from "../interfaces/component";
 
+import { translateStatus } from "../utils/misc";
+
 const CharacterCard = (props: ICharacterProps) => {
+  const translatedStatus = translateStatus(props.character.status);
+  const translatedStatusWithEmoji =
+    translatedStatus === "vivo"
+      ? "Vivo 🟢"
+      : translatedStatus === "muerto"
+      ? "Muerto 🔴"
+      : "Desconocido ❓";
   return (
     <Card maxW="320px" borderRadius={20}>
       <CardBody padding="10px">
@@ -22,7 +31,7 @@ const CharacterCard = (props: ICharacterProps) => {
           <Text noOfLines={1} fontSize="sm">
             Estado:{" "}
             <Text as="span" fontWeight="semibold">
-              {props.character.status}
+              {translatedStatusWithEmoji}
             </Text>
           </Text>
           <Text noOfLines={1} fontSize="sm">
