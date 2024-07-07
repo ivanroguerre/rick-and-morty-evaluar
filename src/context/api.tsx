@@ -15,21 +15,27 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   const [error, setError] = useState<string>();
   const [loading, setLoading] = useState(false);
 
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const charactersResponse = await getCharacters({
+        filters: { name: searchCriteria },
+      });
+      setCharacters(charactersResponse.results);
+      setError(undefined);
+    } catch (error) {
+      setError(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    debounce(async () => {
-      try {
-        setLoading(true);
-        const charactersResponse = await getCharacters({
-          filters: { name: searchCriteria },
-        });
-        setCharacters(charactersResponse.results);
-        setError(undefined);
-      } catch (error) {
-        setError(error as string);
-      } finally {
-        setLoading(false);
-      }
-    }, 1000);
+    if (searchCriteria === undefined) {
+      getData();
+      return;
+    }
+    debounce(getData, 1000);
   }, [searchCriteria]);
 
   return (
