@@ -16,7 +16,15 @@ const Searchbar = () => {
         placeholder="Nombre del personaje"
         borderRadius="2xl"
       />
-      <Button onClick={apiContext?.getData}>Buscar</Button>
+      <Button
+        onClick={apiContext?.getData}
+        isLoading={apiContext?.loading}
+        loadingText="Buscando..."
+        spinnerPlacement="start"
+        spinner={<></>}
+      >
+        Buscar
+      </Button>
     </HStack>
   );
 };
