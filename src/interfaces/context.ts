@@ -8,4 +8,5 @@ export interface IApiContext {
   loading: boolean;
   searchCriteria: string | undefined;
   setSearchCriteria: Dispatch<SetStateAction<string | undefined>>;
+  getData: VoidFunction;
 }

@@ -5,8 +5,6 @@ import { getCharacters } from "../service/rick-and-morty";
 import { IApiContext } from "../interfaces/context";
 import { ICharacter } from "../interfaces/api";
 
-import { debounce } from "../utils/misc";
-
 export const ApiContext = createContext<IApiContext | undefined>(undefined);
 
 export const ApiContextProvider = ({ children }: PropsWithChildren) => {
@@ -31,16 +29,19 @@ export const ApiContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    if (searchCriteria === undefined) {
-      getData();
-      return;
-    }
-    debounce(getData, 1000);
-  }, [searchCriteria]);
+    getData();
+  }, []);
 
   return (
     <ApiContext.Provider
-      value={{ characters, error, loading, searchCriteria, setSearchCriteria }}
+      value={{
+        characters,
+        error,
+        loading,
+        searchCriteria,
+        setSearchCriteria,
+        getData,
+      }}
     >
       {children}
     </ApiContext.Provider>
