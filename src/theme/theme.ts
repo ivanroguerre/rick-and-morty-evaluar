@@ -1,6 +1,7 @@
 import {
-  extendTheme,
+  extendBaseTheme,
   StyleFunctionProps,
+  theme as chakraTheme,
   type ThemeConfig,
 } from "@chakra-ui/react";
 
@@ -12,8 +13,22 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 
-const theme = extendTheme({
+const { Container, Heading, Spinner, Switch, FormLabel, Card, Input, Button } =
+  chakraTheme.components;
+
+const theme = extendBaseTheme({
   config,
+  // Al usar `extendBaseTheme` se reduce el tamaño del payload JS inicial
+  components: {
+    Container,
+    FormLabel,
+    Heading,
+    Spinner,
+    Switch,
+    Card,
+    Input,
+    Button,
+  },
   fonts: {
     heading: `'Passion One', system-ui`,
     body: `'Manrope Variable', sans-serif`,
@@ -23,7 +38,7 @@ const theme = extendTheme({
       body: {
         minHeight: "100vh",
         backgroundColor: props.colorMode === "dark" ? "#1B1C1E" : "#DADADA",
-        backgroundImage: `url("/bg.png")`,
+        backgroundImage: `url("/bg.webp")`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "bottom right 0px",
         backgroundSize: "100%",

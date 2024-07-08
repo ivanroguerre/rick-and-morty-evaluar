@@ -13,13 +13,18 @@ const CharacterCard = (props: ICharacterProps) => {
       ? "Muerto 🔴"
       : "Desconocido ❓";
   return (
-    <Card maxW="320px" borderRadius={20}>
+    // Proporcionando una altura mínima se evita el layout shift cuando la imagen no ha cargado
+    <Card maxW="320px" borderRadius={20} minH="397px">
       <CardBody padding="10px">
         <Image
           src={props.character.image}
           alt={`Imagen de ${props.character.name}`}
           borderRadius={16}
+          // Muestra el fallback mientras carga la imagen
+          fallbackSrc="/fallback.webp"
           mb="10px"
+          w="300px"
+          h="300px"
         />
         <VStack spacing="10px" align="flex-start">
           <Text noOfLines={1} fontSize="sm">

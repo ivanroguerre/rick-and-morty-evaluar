@@ -6,6 +6,8 @@ import {
   Container,
   FormControl,
   FormLabel,
+  Grid,
+  GridItem,
   Heading,
   Spinner,
   Switch,
@@ -13,7 +15,6 @@ import {
   useColorMode,
   VStack,
 } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
 import Searchbar from "./component/searchbar";
 
 const App = () => {
