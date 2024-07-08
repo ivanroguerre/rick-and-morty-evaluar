@@ -19,7 +19,9 @@ import Searchbar from "./component/searchbar";
 
 const App = () => {
   const apiContext = useContext(ApiContext);
-  const { toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  console.log("colorMode", colorMode);
 
   const renderDynamicContent = () => {
     if (apiContext?.loading)
@@ -64,8 +66,8 @@ const App = () => {
         </FormLabel>
         <Switch
           id="dark-mode"
-          // Inicia en true ya que `initialColorMode` es "dark" en el theme
-          defaultChecked={true}
+          defaultChecked={colorMode === "dark"}
+          isChecked={colorMode === "dark"}
           onChange={toggleColorMode}
         />
       </FormControl>
