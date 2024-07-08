@@ -21,8 +21,6 @@ const App = () => {
   const apiContext = useContext(ApiContext);
   const { colorMode, toggleColorMode } = useColorMode();
 
-  console.log("colorMode", colorMode);
-
   const renderDynamicContent = () => {
     if (apiContext?.loading)
       return (
