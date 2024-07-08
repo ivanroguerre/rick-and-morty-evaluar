@@ -1,4 +1,8 @@
-import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import {
+  extendTheme,
+  StyleFunctionProps,
+  type ThemeConfig,
+} from "@chakra-ui/react";
 
 import "@fontsource/passion-one";
 import "@fontsource-variable/manrope";
@@ -15,15 +19,17 @@ const theme = extendTheme({
     body: `'Manrope Variable', sans-serif`,
   },
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       body: {
         minHeight: "100vh",
+        backgroundColor: props.colorMode === "dark" ? "#1B1C1E" : "#DADADA",
         backgroundImage: `url("/bg.png")`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "bottom right 0px",
         backgroundSize: "100%",
+        color: props.colorMode === "dark" ? "#FFFFFF" : "#333333",
       },
-    },
+    }),
   },
 });
 

@@ -14,6 +14,7 @@ const Searchbar = () => {
       onChange={(e) => apiContext?.setSearchCriteria(e.target.value)}
       placeholder="Nombre del personaje"
       mb={[8, 12]}
+      borderRadius="2xl"
     />
   );
 };
