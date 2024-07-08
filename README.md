@@ -4,8 +4,21 @@
 
 1. Clonar este proyecto.
 2. Moverse a la raíz del proyecto.
-3. `npm install`.
-4. `npm run dev`.
+3. Cambiar a la rama `main` con `git checkout main`.
+4. `npm install`.
+5. `npm run dev`.
+
+## Versiones
+
+Este proyecto cuenta con dos versiones:
+
+- `v1.0` que tiene una barra de búsqueda que consulta la API cada vez que hay un cambio (con un debounce).
+- `v2.0` que tiene una barra de búsqueda que consulta la API cada vez que se presiona el botón `buscar`.
+
+Se incluyeron dos versiones ya que al momento de realizar la prueba en la entrevista técnica se implemento
+con la versión `v1.0` pero en la maqueta de Figma esta la versión `v2.0`. Para cambiar a la versión `v1.0`
+se debe usar el comando: `git checkout v1.0`. Para ver la versión `v2.0` simplemente se debe usar la rama
+`main` con sus cambios al día: `git checkout main`.
 
 ## NOTAS:
 
